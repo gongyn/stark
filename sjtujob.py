@@ -24,7 +24,7 @@ for job in job1.find_all('li')[1:]:
     items = re.findall(pattern,job.find('a').get('onclick'))
     link = front + items[0]
     name = job.find_all('div')[0].get_text(strip=True)
-    time = job.find_all('div')[3].get_text(strip=True) + ' ' + job.find_all('div')[4].get_text(strip=True)
+    time = job.find_all('div')[3].get_text(strip=True) + ' ' + job.find_all('div')[4].get_text(strip=True).split('-')[0]
     place = job.find_all('div')[2].get_text(strip=True)
     print name, place, time
     print  link,'\n'
