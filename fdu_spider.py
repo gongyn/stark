@@ -15,9 +15,8 @@ for job in soup.find_all(id = 'tab1_bottom'):
     link = front + job.get('key')
     name = job.find(class_ = 'tab1_bottom1').get_text()
     types = job.find(class_ = 'tab1_bottom2').get_text()
-    date = job.find(class_ = 'tab1_bottom3').get_text()
-    time = job.find(class_ = 'tab1_bottom4').get_text()
+    date = job.find(class_ = 'tab1_bottom3').get_text() + ' '+ job.find(class_ = 'tab1_bottom4').get_text().split('-')[0]
     place = job.find(class_ = 'tab1_bottom5').get_text()
-    print name, types, place, date, time
+    print name, types, place, date
     print link,'\n'
 
