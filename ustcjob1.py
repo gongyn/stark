@@ -11,7 +11,7 @@ front = 'http://job.ustc.edu.cn/'
 #查询[1,4)页
 for page in range(1,4):
     return_data = requests.post(url + '?pg=' + str(page) + '&MenuID=002001')
-    print return_data.text
+    #print return_data.text
     soup = BeautifulSoup(return_data.text,'lxml')
     for job1 in soup.find_all(class_='Joplistone'):
         for job in job1.find_all('li'):
