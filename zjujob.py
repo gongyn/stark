@@ -16,7 +16,7 @@ for page in range(1,3):
         link = front + job.find('a').get('href')
         #print job.find_all('td')
         name = job.find_all('td')[0].get_text(strip=True)
-        time = " ".join(job.find_all('td')[2].get_text(strip=True).split()) 
+        time = ':'.join(" ".join(job.find_all('td')[2].get_text(strip=True).split()).split(u"："))
         place = job.find_all('td')[1].get_text(strip=True)
         print name, place, time
         print link,'\n'
