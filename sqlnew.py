@@ -18,11 +18,11 @@ conn.set_character_set('utf8')
 #创建数据表
 cur.execute("\
     create table `ustcjob1`(\
-        job_name    varchar(255),\
-        job_place   varchar(255),\
-        job_url     varchar(255),\
-        job_time    datetime,\
-        school_name varchar(255),\
+        job_name    varchar(255) NOT NULL,\
+        job_place   varchar(255) NOT NULL,\
+        job_url     varchar(255) NOT NULL,\
+        job_time    datetime NOT NULL,\
+        school_name varchar(255) NOT NULL,\
         PRIMARY KEY (job_url)\
 	)ENGINE=InnoDB;\
 ")
@@ -34,8 +34,8 @@ cur.execute("\
     #     "job_time": time,
     #     "school_name": school
     #     }
-    # cols = ', '.join(my_dict.keys())
-    # values = '"," '.join(my_dict.values())
+    # cols = ','.join(my_dict.keys())
+    # values = '","'.join(my_dict.values())
     # sql = "INSERT INTO ustcjob (%s) VALUES (%s)" % (cols, '"'+values+'"')
     # cur.execute(sql)
 
