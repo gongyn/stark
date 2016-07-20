@@ -22,8 +22,8 @@ class Mysql:
     def insertData(self, table, my_dict):
          try:
              self.db.set_character_set('utf8')
-             cols = ', '.join(my_dict.keys())
-             values = '"," '.join(my_dict.values())
+             cols = ','.join(my_dict.keys())
+             values = '","'.join(my_dict.values())
              sql = "INSERT INTO %s (%s) VALUES (%s)" % (table, cols, '"'+values+'"')
              try:
                  result = self.cur.execute(sql)
