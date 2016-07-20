@@ -15,7 +15,7 @@ class Fdu_spider:
         print "Fdu_spider init successed!"
         
     #获得count条记录的HTML
-    def getJobs(self, count):
+    def getHtml(self, count):
         html = requests.post(self.siteURL, data = {'count':str(count)})
         return html.text
     
@@ -27,9 +27,9 @@ class Fdu_spider:
         place = jobinfo.find(class_ = 'tab1_bottom5').get_text()
         return [title, place, link, time]
 
-    #获得count条招聘信息
+    #存储count条招聘信息
     def storeJob(self,count):
-        html = self.getJobs(count)
+        html = self.getHtml(count)
         soup = BeautifulSoup(html)
         for jobinfo in soup.find_all(id = 'tab1_bottom'):
             job = self.getJob(jobinfo)
@@ -39,7 +39,7 @@ class Fdu_spider:
                             'link': job[2],
                             'time': job[3],
                             'school': self.school 
-                         }
+                        }
             self.mysql.insertData("starkjobs",job_dict)
 
 fdu_spider = Fdu_spider()
