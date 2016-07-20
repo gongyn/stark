@@ -9,14 +9,15 @@ class Fdu_spider:
     #初始化
     def __init__(self):
         self.siteURL = "http://www.career.fudan.edu.cn/jsp/career_talk_list.jsp"
+        self.dataReq = {'count':'100',}
         self.front = "http://www.career.fudan.edu.cn/html/xjh/1.html?view=true&key="
         self.school = "fdu"
         self.mysql = mysql.Mysql()
         print "Fdu_spider init successed!"
         
     #获得count条记录的HTML
-    def getHtml(self, count):
-        html = requests.post(self.siteURL, data = {'count':str(count)})
+    def getHtml(self, urlReq, dataReq):
+        html = requests.post(urlReq, dataReq)
         return html.text
     
     #获得招聘详情
@@ -28,9 +29,9 @@ class Fdu_spider:
         return [title, place, link, time]
 
     #存储count条招聘信息
-    def storeJob(self,count):
-        html = self.getHtml(count)
-        soup = BeautifulSoup(html)
+    def storeJob(self):
+        html = self.getHtml(self.siteURL, self.dataReq)
+        soup = BeautifulSoup(html,'lxml')
         for jobinfo in soup.find_all(id = 'tab1_bottom'):
             job = self.getJob(jobinfo)
             job_dict = {
@@ -43,4 +44,4 @@ class Fdu_spider:
             self.mysql.insertData("starkjobs",job_dict)
 
 fdu_spider = Fdu_spider()
-fdu_spider.storeJob(100)
+fdu_spider.storeJob()
