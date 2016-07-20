@@ -50,8 +50,8 @@ for job in job1.find_all('li'):
         "job_time": time,
         "school_name": school
         }
-    cols = ', '.join(my_dict.keys())
-    values = '"," '.join(my_dict.values())
+    cols = ','.join(my_dict.keys())
+    values = '","'.join(my_dict.values())
     sql = "INSERT INTO %s (%s) VALUES (%s)" % ("ustcjob", cols, '"'+values+'"')
     cur.execute(sql)
 
