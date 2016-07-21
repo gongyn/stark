@@ -10,13 +10,13 @@ class Ustc_spider:
         self.siteURL = "http://job.ustc.edu.cn/list.php"
         self.dataReq = {}
         self.front = "http://job.ustc.edu.cn/"
-        self.school = "fdu"
+        self.school = "ustc"
         self.mysql = mysql.Mysql()
         print "Ustc_spider init successed!"
         
     #获得count条记录的HTML
-    def getHtml(self, urlReq, dataReq):
-        html = requests.post(urlReq, dataReq)
+    def getHtml(self, siteURL, dataReq):
+        html = requests.post(siteURL, dataReq)
         return html.text
 
 #获得招聘详情
@@ -32,8 +32,8 @@ class Ustc_spider:
 #查询[1,4)页
     def storeJob(self,pageNum):
         for page in range(1,pageNum):
-            urlReq =self.siteURL + '?pg=' + str(page) + '&MenuID=002001'
-            html = self.getHtml(urlReq, self.dataReq)
+            siteURL =self.siteURL + '?pg=' + str(page) + '&MenuID=002001'
+            html = self.getHtml(siteURL, self.dataReq)
             soup = BeautifulSoup(html,'lxml')
             for jobinfo in soup.find_all(class_='Joplistone')[1].find_all('li'):
                 job = self.getJob(jobinfo)
