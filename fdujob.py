@@ -16,8 +16,8 @@ class Fdu_spider:
         print "Fdu_spider init successed!"
         
     #获得count条记录的HTML
-    def getHtml(self, urlReq, dataReq):
-        html = requests.post(urlReq, dataReq)
+    def getHtml(self, siteURL, dataReq):
+        html = requests.post(siteURL, dataReq)
         return html.text
     
     #获得招聘详情
