@@ -48,7 +48,4 @@ class Ustc_spider:
 
 ustc_spider = Ustc_spider()
 ustc_spider.storeJob(4)
-<<<<<<< HEAD
-            
-=======
->>>>>>> 78518a8c864369b32fee817c3ad4b55964e81951
+
