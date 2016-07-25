@@ -5,7 +5,7 @@ import MySQLdb
 
 try:
     #连接数据库函数connect(host, username, password, dbname)
-    conn = MySQLdb.connect('localhost', 'root', 'password', 'stark')
+    conn = MySQLdb.connect('localhost', 'root', 'sql8086', 'stark')
 except mdb.Error, e:
     print "Error %d: %s" % (e.args[0],e.args[1])
     sys.exit(1)
